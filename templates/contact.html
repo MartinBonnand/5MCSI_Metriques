@@ -5,28 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactez-moi</title>
 
-
+    <!-- Nouvelle police -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 
     <style>
         body {
             margin: 0;
             font-family: "Montserrat", sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: url("https://i.redd.it/d2hd73xxwvaa1.jpg") no-repeat center center fixed;
+            background-size: cover;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+
+        /* Blur global sur l'image */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(14px);
+            background: rgba(0, 0, 0, 0.3); /* léger assombrissement pour lisibilité */
+            z-index: -1;
         }
 
         .container {
             background: rgba(255, 255, 255, 0.15);
             padding: 40px;
             width: 450px;
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            box-shadow: 0px 8px 50px rgba(0,0,0,0.2);
+            border-radius: 22px;
+            backdrop-filter: blur(18px);
+            box-shadow: 0px 8px 50px rgba(0,0,0,0.35);
             animation: fadeIn 0.8s ease;
             color: white;
         }
@@ -40,7 +54,9 @@
             text-align: center;
             font-weight: 600;
             margin-bottom: 25px;
+            color: #e6e6ff;
             letter-spacing: 1px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
         .input-group {
@@ -50,19 +66,21 @@
         label {
             font-size: 14px;
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             display: block;
+            color: #f0eaff;
         }
 
         input, textarea {
             width: 100%;
             padding: 12px 15px;
+            background: rgba(255,255,255,0.8);
             border: none;
             border-radius: 12px;
             outline: none;
             font-size: 15px;
-            font-family: inherit;
             color: #333;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         textarea {
@@ -72,8 +90,8 @@
 
         .btn {
             width: 100%;
-            background: white;
-            color: #2575fc;
+            background: #ffffff;
+            color: #5a4aff;
             border: none;
             padding: 14px;
             font-size: 16px;
@@ -81,32 +99,21 @@
             border-radius: 12px;
             cursor: pointer;
             transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .btn:hover {
-            background: url("https://i.redd.it/d2hd73xxwvaa1.jpg") no-repeat center center fixed;
-background-size: cover;
-position: relative;
-
+            background: #f3f3f3;
+            transform: translateY(-2px);
         }
 
         .footer-note {
             text-align: center;
             margin-top: 15px;
             font-size: 13px;
-            opacity: 0.8;
+            color: #dcd5ff;
+            opacity: 0.9;
         }
-        body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(8px);
-    z-index: -1;
-}
-
     </style>
 </head>
 <body>
@@ -127,13 +134,13 @@ position: relative;
 
             <div class="input-group">
                 <label for="message">Votre message</label>
-                <textarea id="message" placeholder="Écrivez votre message ici..."></textarea>
+                <textarea id="message" placeholder="Écrivez votre message..."></textarea>
             </div>
 
             <button type="submit" class="btn">Envoyer</button>
         </form>
 
-        <p class="footer-note"></p>
+        <p class="footer-note">Merci pour votre message ✨</p>
     </div>
 
 </body>
