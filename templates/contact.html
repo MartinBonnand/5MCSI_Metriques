@@ -98,10 +98,10 @@
             resize: none;
         }
 
-     .btn {
+.btn {
     width: 100%;
-    background: linear-gradient(270deg, #ff9900, #ff3b3b, #00ff00, #ff9900);
-    background-size: 400% 400%; /* Permet à l'animation de couvrir plus large que le bouton */
+    background: linear-gradient(270deg, #ff9900, #ff9900);
+    background-size: 400% 400%;
     color: #000;
     border: none;
     padding: 14px;
@@ -112,18 +112,20 @@
     transition: 0.3s ease, transform 0.3s ease;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     font-family: "Bradley Hand", cursive;
-    animation: gradientMove 5s ease infinite; /* Animation continue */
-}
-
-.btn:hover {
-    filter: brightness(1.1);
-    transform: translateY(-2px);
+    animation: gradientMove 5s ease infinite;
+    position: relative; /* important pour ne pas casser le layout */
+    z-index: 1; /* assure que le bouton ne masque pas le reste */
 }
 
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+.btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
 }
 
 
