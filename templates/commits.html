@@ -41,31 +41,35 @@
     </div>
 
     <script>
-        const labels = {{ labels|tojson }};
-        const values = {{ values|tojson }};
+        // On récupère les données depuis /commits-data/
+        fetch("/commits-data/")
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.results.map(item => item.minute);
+                const values = data.results.map(item => item.count);
 
-        const ctx = document.getElementById('commitsChart').getContext('2d');
+                const ctx = document.getElementById('commitsChart').getContext('2d');
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Commits par minute",
-                    data: values,
-                    borderWidth: 1,
-                    backgroundColor: "rgba(0, 180, 255, 0.5)",
-                    borderColor: "rgb(0, 180, 255)"
-                }]
-            },
-            options: {
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Commits par minute",
+                            data: values,
+                            borderWidth: 1,
+                            backgroundColor: "rgba(0, 180, 255, 0.5)",
+                            borderColor: "rgb(0, 180, 255)"
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            });
     </script>
 
 </body>
 </html>
-
