@@ -7,9 +7,7 @@
 
     <!-- Nouvelle police -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
     <style>
-
 .input-group {
   position: relative;
   margin-bottom: 20px;
@@ -36,6 +34,48 @@
   <input type="text" id="nom" placeholder=" ">
   <label for="nom">Nom</label>
 </div>
+<script>
+const btn = document.querySelector('.btn');
+btn.addEventListener('mousemove', (e) => {
+  const rect = btn.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  btn.style.background = `radial-gradient(circle at ${x}px ${y}px, #FFA500, #00FF00, #FF0000)`;
+});
+btn.addEventListener('mouseleave', () => {
+  btn.style.background = '';
+});
+</script>
+<script>
+document.querySelector('form').addEventListener('submit', function(e){
+  const nom = document.getElementById('nom').value;
+  const prenom = document.getElementById('prenom').value;
+  if(!nom || !prenom){
+    alert("Veuillez remplir tous les champs !");
+    e.preventDefault(); // Empêche l’envoi
+  }
+});
+</script>
+<script>
+window.addEventListener('load', () => {
+  const inputs = document.querySelectorAll('.input-group');
+  inputs.forEach((input, index) => {
+    setTimeout(() => {
+      input.style.opacity = 1;
+      input.style.transform = 'translateY(0)';
+    }, index * 150);
+  });
+});
+</script>
+<style>
+.input-group {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+</style>
+
+<style>
         body {
             margin: 0;
             font-family: "Bradley Hand", cursive;
