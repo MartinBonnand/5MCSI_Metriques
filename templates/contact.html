@@ -9,6 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
 
+<script>
+const btn = document.querySelector('.btn');
+btn.addEventListener('mousemove', (e) => {
+  const rect = btn.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  btn.style.background = `radial-gradient(circle at ${x}px ${y}px, #FFA500, #00FF00, #FF0000)`;
+});
+btn.addEventListener('mouseleave', () => {
+  btn.style.background = '';
+});
+</script>
+<script>
+document.querySelector('form').addEventListener('submit', function(e){
+  const nom = document.getElementById('nom').value;
+  const prenom = document.getElementById('prenom').value;
+  if(!nom || !prenom){
+    alert("Veuillez remplir tous les champs !");
+    e.preventDefault(); // Empêche l’envoi
+  }
+});
+</script>
+<script>
+window.addEventListener('load', () => {
+  const inputs = document.querySelectorAll('.input-group');
+  inputs.forEach((input, index) => {
+    setTimeout(() => {
+      input.style.opacity = 1;
+      input.style.transform = 'translateY(0)';
+    }, index * 150);
+  });
+});
+</script>
 <style>
 .input-group {
   opacity: 0;
@@ -98,10 +131,9 @@
             resize: none;
         }
 
-.btn {
+        .btn {
     width: 100%;
-    background: linear-gradient(270deg, #ff9900, #ff9900);
-    background-size: 400% 400%;
+    background: linear-gradient(90deg, #ff9900, #ff3b3b);
     color: #000;
     border: none;
     padding: 14px;
@@ -109,21 +141,13 @@
     font-weight: 600;
     border-radius: 12px;
     cursor: pointer;
-    transition: 0.3s ease, transform 0.3s ease;
+    transition: 0.3s ease;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     font-family: "Bradley Hand", cursive;
-    animation: gradientMove 5s ease infinite;
-    position: relative; /* important pour ne pas casser le layout */
-    z-index: 1; /* assure que le bouton ne masque pas le reste */
 }
 
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
 
-.btn:hover {
+        .btn:hover {
     filter: brightness(1.1);
     transform: translateY(-2px);
 }
