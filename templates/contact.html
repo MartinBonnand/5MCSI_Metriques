@@ -43,16 +43,19 @@
             z-index: -1;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 40px;
-            width: 450px;
-            border-radius: 22px;
-            backdrop-filter: blur(18px);
-            box-shadow: 0px 8px 50px rgba(0,0,0,0.35);
-            animation: fadeIn 0.8s ease;
-            color: #000;
+   
+             .container {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    width: 450px;
+    border-radius: 22px;
+    backdrop-filter: blur(18px);
+    box-shadow: 0px 8px 50px rgba(0,0,0,0.35);
+    position: relative;  /* important */
+    z-index: 1;          /* assure que tout reste visible */
+    color: #000;color: white;
 }
+
         }
 
         @keyframes fadeIn {
@@ -100,7 +103,7 @@
 
 .btn {
     width: 100%;
-    background: linear-gradient(270deg, #ff9900, #ff9900);
+    background: linear-gradient(270deg, #ff9900, #f22602,#f2d202,#ff9900);
     background-size: 400% 400%;
     color: #000;
     border: none;
