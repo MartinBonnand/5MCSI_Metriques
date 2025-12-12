@@ -6,7 +6,9 @@ from urllib.request import urlopen
 import sqlite3
                                                                                                                                        
 app = Flask(__name__)
-
+@app.route("/commits/")
+def MaPremiereAPI():
+    return render_template("commits.html")
 @app.route("/histogramme/")
 def histogramme():
     return render_template("histogramme.html")
