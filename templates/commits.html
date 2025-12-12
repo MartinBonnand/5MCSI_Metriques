@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commits par minute</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        #chart-container {
+            width: 80%;
+            margin: auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            box-shadow: 0px 0px 25px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Activité des commits (minute par minute)</h1>
+
+    <div id="chart-container">
+        <canvas id="commitsChart"></canvas>
+    </div>
+
+    <script>
+        const labels = {{ labels|tojson }};
+        const values = {{ values|tojson }};
+
+        const ctx = document.getElementById('commitsChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Commits par minute",
+                    data: values,
+                    borderWidth: 1,
+                    backgroundColor: "rgba(0, 180, 255, 0.5)",
+                    borderColor: "rgb(0, 180, 255)"
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
 
