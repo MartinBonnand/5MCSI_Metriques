@@ -13,7 +13,7 @@ def commits():
 
 @app.route("/commits-data/")
 def commits_data():
-    GITHUB_USERNAME = "bonnand"
+    GITHUB_USERNAME = "MartinBonnand"
     url = f"https://api.github.com/repos/{GITHUB_USERNAME}/5MCSI_Metriques/commits"
 
     req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
