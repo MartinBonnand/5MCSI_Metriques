@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-moi</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            width: 450px;
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0px 8px 50px rgba(0,0,0,0.2);
+            animation: fadeIn 0.8s ease;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+            font-family: inherit;
+            color: #333;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .btn {
+            width: 100%;
+            background: white;
+            color: #2575fc;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #e8e8e8;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Contactez-moi</h1>
+
+        <form action="#" method="post">
+            <div class="input-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" placeholder="Votre nom">
+            </div>
+
+            <div class="input-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" placeholder="Votre prénom">
+            </div>
+
+            <div class="input-group">
+                <label for="message">Votre message</label>
+                <textarea id="message" placeholder="Écrivez votre message ici..."></textarea>
+            </div>
+
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+
+        <p class="footer-note">Merci pour votre message ✨</p>
+    </div>
+
+</body>
+</html>
