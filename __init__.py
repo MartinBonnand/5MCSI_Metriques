@@ -8,27 +8,31 @@ import sqlite3
 app = Flask(__name__)
 
 @app.route("/commits/")
-def commits_chart():
-    # Récupérer les commits de l’API GitHub
-    url = "https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits"
-    response = requests.get(url)
-    data = response.json()
+def commits():
+    return render_template("commits.html")
 
-    # Comptage : minute → nombre de commits
-    commits_per_minute = {}
+# API données commits GitHub
+@app.route("/commits-data/")
+def commits_data():
+    GITHUB_USERNAME = "tedmlkskywalker"
+    url = f"https://api.github.com/repos/{GITHUB_USERNAME}/5MCSI_Metriques/commits"
 
-    for commit in data:
-        date_string = commit["commit"]["author"]["date"]
-        date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
-        minute = date_object.minute
+    req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    response = urlopen(req)
+    raw = response.read()
+    commits_json = json.loads(raw.decode("utf-8"))
 
-        commits_per_minute[minute] = commits_per_minute.get(minute, 0) + 1
+    minute_counts = {m: 0 for m in range(60)}
 
-    # On prépare les labels + valeurs pour Chart.js
-    labels = list(commits_per_minute.keys())
-    values = list(commits_per_minute.values())
+    for c in commits_json:
+        date_str = c.get("commit", {}).get("author", {}).get("date")
+        if not date_str:
+            continue
+        dt = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ")
+        minute_counts[dt.minute] += 1
 
-    return render_template("commits.html", labels=labels, values=values)
+    results = [{"minute": m, "count": minute_counts[m]} for m in range(60)]
+    return jsonify(results=results)
   
 @app.route("/histogramme/")
 def histogramme():
