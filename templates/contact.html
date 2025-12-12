@@ -84,7 +84,10 @@
         }
 
         .btn:hover {
-            background: #e8e8e8;
+            background: url("https://i.redd.it/d2hd73xxwvaa1.jpg") no-repeat center center fixed;
+background-size: cover;
+position: relative;
+
         }
 
         .footer-note {
@@ -93,6 +96,17 @@
             font-size: 13px;
             opacity: 0.8;
         }
+        body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    z-index: -1;
+}
+
     </style>
 </head>
 <body>
