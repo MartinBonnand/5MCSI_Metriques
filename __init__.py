@@ -1,10 +1,10 @@
 from flask import Flask, render_template_string, render_template, jsonify
 from flask import render_template
-import json
+import json               # <-- CORRECTION ICI
 from datetime import datetime
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 import sqlite3
-                                                                                                                                       
+
 app = Flask(__name__)
 
 @app.route("/commits/")
@@ -19,7 +19,8 @@ def commits_data():
     req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
     response = urlopen(req)
     raw = response.read()
-    commits_json = json.loads(raw.decode("utf-8"))
+
+    commits_json = json.loads(raw.decode("utf-8"))  # <-- et ici ça fonctionne enfin
 
     minute_counts = {m: 0 for m in range(60)}
 
@@ -27,6 +28,7 @@ def commits_data():
         date_str = c.get("commit", {}).get("author", {}).get("date")
         if not date_str:
             continue
+
         dt = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ")
         minute_counts[dt.minute] += 1
 
@@ -36,11 +38,11 @@ def commits_data():
 @app.route("/histogramme/")
 def histogramme():
     return render_template("histogramme.html")
-  
+
 @app.route("/rapport/")
 def mongraphique():
     return render_template("graphique.html")
-  
+
 @app.route("/contact/")
 def MaPremiereAPI():
     return render_template("contact.html")
@@ -53,13 +55,13 @@ def meteo():
     results = []
     for list_element in json_content.get('list', []):
         dt_value = list_element.get('dt')
-        temp_day_value = list_element.get('main', {}).get('temp') - 273.15 # Conversion de Kelvin en °c 
+        temp_day_value = list_element.get('main', {}).get('temp') - 273.15
         results.append({'Jour': dt_value, 'temp': temp_day_value})
     return jsonify(results=results)
-  
+
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
-  
+
 if __name__ == "__main__":
     app.run(debug=True)
