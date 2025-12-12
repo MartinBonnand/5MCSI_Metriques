@@ -6,9 +6,30 @@ from urllib.request import urlopen
 import sqlite3
                                                                                                                                        
 app = Flask(__name__)
+
 @app.route("/commits/")
-def MaPremiereAPI():
-    return render_template("commits.html")
+def commits_chart():
+    # Récupérer les commits de l’API GitHub
+    url = "https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits"
+    response = requests.get(url)
+    data = response.json()
+
+    # Comptage : minute → nombre de commits
+    commits_per_minute = {}
+
+    for commit in data:
+        date_string = commit["commit"]["author"]["date"]
+        date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+        minute = date_object.minute
+
+        commits_per_minute[minute] = commits_per_minute.get(minute, 0) + 1
+
+    # On prépare les labels + valeurs pour Chart.js
+    labels = list(commits_per_minute.keys())
+    values = list(commits_per_minute.values())
+
+    return render_template("commits.html", labels=labels, values=values)
+  
 @app.route("/histogramme/")
 def histogramme():
     return render_template("histogramme.html")
