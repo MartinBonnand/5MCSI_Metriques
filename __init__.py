@@ -11,11 +11,10 @@ app = Flask(__name__)
 def commits():
     return render_template("commits.html")
 
-# API données commits GitHub
 @app.route("/commits-data/")
 def commits_data():
-    GITHUB_USERNAME = "MartinBonnand"
-    url = f"https://api.github.com/repos/MartinBonnand/5MCSI_Metriques/commits"
+    GITHUB_USERNAME = "bonnand"
+    url = f"https://api.github.com/repos/{GITHUB_USERNAME}/5MCSI_Metriques/commits"
 
     req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
     response = urlopen(req)
@@ -33,7 +32,7 @@ def commits_data():
 
     results = [{"minute": m, "count": minute_counts[m]} for m in range(60)]
     return jsonify(results=results)
-  
+
 @app.route("/histogramme/")
 def histogramme():
     return render_template("histogramme.html")
