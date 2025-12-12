@@ -7,17 +7,8 @@
 
     <!-- Nouvelle police -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
 
-<style>
-.input-group {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
-}
-</style>
-
-<style>
+    <style>
         body {
             margin: 0;
             font-family: "Bradley Hand", cursive;
@@ -43,19 +34,15 @@
             z-index: -1;
         }
 
-   
-             .container {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 40px;
-    width: 450px;
-    border-radius: 22px;
-    backdrop-filter: blur(18px);
-    box-shadow: 0px 8px 50px rgba(0,0,0,0.35);
-    position: relative;  /* important */
-    z-index: 5;          /* assure que tout reste visible */
-    color: #000;
-}
-
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            width: 450px;
+            border-radius: 22px;
+            backdrop-filter: blur(18px);
+            box-shadow: 0px 8px 50px rgba(0,0,0,0.35);
+            animation: fadeIn 0.8s ease;
+            color: white;
         }
 
         @keyframes fadeIn {
@@ -67,7 +54,7 @@
             text-align: center;
             font-weight: 600;
             margin-bottom: 25px;
-            color: #000;
+            color: #e6e6ff;
             letter-spacing: 1px;
             text-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
@@ -81,7 +68,7 @@
             font-weight: 500;
             margin-bottom: 8px;
             display: block;
-            color: #000;
+            color: #f0eaff;
         }
 
         input, textarea {
@@ -101,7 +88,7 @@
             resize: none;
         }
 
-   .btn {
+        .btn {
             width: 100%;
             background: #ffffff;
             color: #5a4aff;
@@ -119,7 +106,6 @@
             background: #f3f3f3;
             transform: translateY(-2px);
         }
-
 
         .footer-note {
             text-align: center;
@@ -158,4 +144,4 @@
     </div>
 
 </body>
-</html>
+</html> pour le bouton fait un dégradé orange vert rouge du coup le texte ecrit en noir
